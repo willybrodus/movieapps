@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Whats New Movie</string>
+    <string name="msg_unexpected_error">Cannot proceed your request, please try again later</string>
+    <string name="msg_unexpected_network">Something wrong with internet connection, please try again later</string>
+    <string name="msg_unexpected_unauthorized">User is Unauthorized, Try Again!</string>
+    <string name="label_no_data">There is no data</string>
+    <string name="general_error_description_bottom_adaptor">Sorry something went wrong, swipe down to retry</string>
+
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/menu_movie">
+
+    <fragment
+        android:id="@+id/menu_movie"
+        android:name="com.dicoding.whatsnewmoview.ui.landingpage.home.cinemafragment.CinemaFragment"
+        android:label="@string/label_menu_cinema"
+        tools:layout="@layout/fragment_cinema" >
+        <action
+            android:id="@+id/action_menu_movie_to_menu_serial"
+            app:destination="@id/menu_serial"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/menu_movie"/>
+        <action
+            android:id="@+id/action_menu_movie_to_menu_favorite"
+            app:destination="@id/menu_favorite"
+            app:launchSingleTop="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/menu_serial"
+        android:name="com.dicoding.whatsnewmoview.ui.landingpage.home.serialfragment.SerialFragment"
+        android:label="@string/label_menu_serial"
+        tools:layout="@layout/fragment_serial" >
+        <action
+            android:id="@+id/action_menu_serial_to_menu_movie"
+            app:destination="@id/menu_movie"
+            app:launchSingleTop="true"/>
+        <action
+            android:id="@+id/action_menu_serial_to_menu_favorite2"
+            app:destination="@id/menu_favorite" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/menu_favorite"
+        android:name="com.company.myfavoritepage.FavoriteFragment"
+        android:label="@string/label_favorite_cinema"
+        app:moduleName="myfavoritepage"
+        tools:layout="@layout/favorite_fragment" >
+
+        <action
+            android:id="@+id/action_menu_favorite_to_menu_serial"
+            app:destination="@id/menu_serial" />
+        <action
+            android:id="@+id/action_menu_favorite_to_menu_movie"
+            app:destination="@id/menu_movie" />
+    </fragment>
+
+</navigation>

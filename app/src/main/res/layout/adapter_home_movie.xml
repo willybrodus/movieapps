@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/space_x2"
+    android:background="@color/colorPrimary">
+
+    <com.dicoding.whatsnewmoview.widget.ImageRoundCorners
+        android:id="@+id/imageRoundCorners"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/space_x13"
+        android:src="@color/transparent_gray"
+        app:cornerRadius="@dimen/space"
+        app:layout_constraintDimensionRatio="H,16:12"
+        app:layout_constraintEnd_toStartOf="@+id/desc"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:roundedCorners="all" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_x2"
+        android:textAppearance="@style/TextAppearance.App.TextView.Bold.Big"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageRoundCorners"
+        app:layout_constraintTop_toTopOf="@+id/imageRoundCorners"
+        tools:text="What Are You Thinking?" />
+
+    <com.dicoding.whatsnewmoview.widget.EllipsizingTextViewMultiLine
+        android:id="@+id/desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:textColor="@color/manatee"
+        android:textAppearance="@style/TextAppearance.App.TextView.Normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageRoundCorners"
+        app:layout_constraintStart_toStartOf="@+id/txt_title"
+        app:layout_constraintTop_toBottomOf="@+id/txt_title"
+        tools:text="The son of a notorious serial killer becomes an acclaimed criminal psychologist who uses his unique insight into how killers think to help the NYPD" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_circle"
+        android:layout_width="@dimen/space"
+        android:layout_height="@dimen/space"
+        android:src="@drawable/circle"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_date"
+        app:layout_constraintStart_toStartOf="@+id/desc"
+        app:layout_constraintTop_toTopOf="@+id/txt_date" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space"
+        android:layout_marginTop="@dimen/space"
+        android:textAppearance="@style/TextAppearance.App.TextView.Normal"
+        app:layout_constraintStart_toEndOf="@+id/image_circle"
+        app:layout_constraintTop_toBottomOf="@+id/desc"
+        tools:text="20 April 2020" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_circle_genre"
+        android:layout_width="@dimen/space"
+        android:layout_height="@dimen/space"
+        android:layout_marginStart="@dimen/space_x2"
+        android:src="@drawable/circle"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_genre"
+        app:layout_constraintStart_toEndOf="@+id/txt_date"
+        app:layout_constraintTop_toTopOf="@+id/txt_genre" />
+
+    <com.dicoding.whatsnewmoview.widget.EllipsizingTextViewMultiLine
+        android:id="@+id/txt_genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space"
+        android:layout_marginTop="@dimen/space"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.App.TextView.Normal"
+        app:layout_constraintStart_toEndOf="@+id/image_circle_genre"
+        app:layout_constraintTop_toBottomOf="@+id/desc"
+        tools:text="Action, Comedy, etc" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

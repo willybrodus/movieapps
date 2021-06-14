@@ -1,0 +1,5 @@
+include ':core'
+rootProject.name = "Whats New Apps"
+include ':app'
+
+include ':myfavoritepage'

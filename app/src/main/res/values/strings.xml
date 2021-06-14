@@ -1,0 +1,12 @@
+<resources>
+    <string name="label_app_tagline">W H A T S &#160;&#160;  N E W &#160;&#160;  M O V I E</string>
+    <string name="label_menu_cinema">Cinema</string>
+    <string name="label_menu_serial">Tv Show</string>
+    <string name="label_production_companies">Production Companies</string>
+    <string name="general_error_description_bottom_adaptor">Sorry something went wrong, swipe down to retry</string>
+    <string name="label_latest_eps">Latest Episode</string>
+    <string name="label_eps"> Eps %1$s S %2$s </string>
+    <string name="label_favorite_cinema">My Favorite</string>
+    <string name="title_myfavoritepage">My Favorite</string>
+
+</resources>

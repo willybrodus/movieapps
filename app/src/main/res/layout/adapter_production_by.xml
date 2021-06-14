@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/onyx"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/space"
+    android:paddingTop="@dimen/space_x2"
+    android:paddingBottom="@dimen/space_x2">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_logo_companies"
+        android:layout_width="@dimen/space_x5"
+        android:layout_height="@dimen/space_x5"
+        android:background="@color/white"
+        android:src="@color/transparent_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/space_x2"
+        android:textAppearance="@style/TextAppearance.App.TextView.Bold"
+        app:layout_constraintStart_toEndOf="@+id/img_logo_companies"
+        app:layout_constraintTop_toTopOf="@+id/img_logo_companies"
+        tools:text="Marvel Studio" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txt_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/space_x2"
+        android:textSize="@dimen/text_12"
+        android:textAppearance="@style/TextAppearance.App.TextView.Bold"
+        app:layout_constraintBottom_toBottomOf="@+id/img_logo_companies"
+        app:layout_constraintStart_toEndOf="@+id/img_logo_companies"
+        app:layout_constraintTop_toBottomOf="@+id/txt_name"
+        tools:text="United States of America" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

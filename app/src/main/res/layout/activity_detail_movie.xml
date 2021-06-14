@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/onyx"
+    android:orientation="vertical"
+    tools:context=".ui.landingpage.detailmovie.DetailMovieActivity"
+    android:fitsSystemWindows="true">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/layout_content_coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_image_shadow"
+                android:fitsSystemWindows="true"
+                app:statusBarScrim="@android:color/transparent"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/image_background"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:src="@color/transparent_gray"
+                        app:layout_collapseMode="pin"
+                        app:layout_constraintDimensionRatio="H,16:9"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/space_x2">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView2"
+                    android:layout_width="@dimen/space_x2"
+                    android:layout_height="@dimen/space_x2"
+                    android:src="@drawable/ic_rate"
+                    android:layout_marginStart="@dimen/space_x2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space"
+                    android:textSize="@dimen/text_16"
+                    android:textAppearance="@style/TextAppearance.App.TextView.Bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView2"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView2"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatImageView2"
+                    tools:text="4,3 rate" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/favorite"
+                    android:layout_width="@dimen/space_x3_half"
+                    android:layout_height="@dimen/space_x3_half"
+                    android:background="@drawable/ic_love_user"
+                    android:button="@null"
+                    android:checked="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txt_rate" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_x2"
+                    android:layout_marginStart="@dimen/space_x2"
+                    android:textAppearance="@style/TextAppearance.App.TextView.Bold.Big"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/appCompatImageView2"
+                    tools:text="What Are You Thinking?" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_subtitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_x2"
+                    android:textSize="@dimen/text_14"
+                    android:textAppearance="@style/TextAppearance.App.TextView.Bold.Big"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_title"
+                    tools:text="How do you do?" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/desc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space"
+                    android:textAppearance="@style/TextAppearance.App.TextView.Normal"
+                    android:textColor="@color/manatee"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/txt_title"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_subtitle"
+                    tools:text="The son of a notorious serial killer becomes an acclaimed criminal psychologist who uses his unique insight into how killers think to help the NYPD" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_circle"
+                    android:layout_width="@dimen/space"
+                    android:layout_height="@dimen/space"
+                    android:src="@drawable/circle"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_date"
+                    app:layout_constraintStart_toStartOf="@+id/desc"
+                    app:layout_constraintTop_toTopOf="@+id/txt_date" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space"
+                    android:layout_marginTop="@dimen/space"
+                    android:textAppearance="@style/TextAppearance.App.TextView.Normal"
+                    app:layout_constraintStart_toEndOf="@+id/image_circle"
+                    app:layout_constraintTop_toBottomOf="@+id/desc"
+                    tools:text="20 April 2020" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_circle_genre"
+                    android:layout_width="@dimen/space"
+                    android:layout_height="@dimen/space"
+                    android:layout_marginStart="@dimen/space_x2"
+                    android:src="@drawable/circle"
+                    app:layout_constraintBottom_toBottomOf="@+id/txt_genre"
+                    app:layout_constraintStart_toEndOf="@+id/txt_date"
+                    app:layout_constraintTop_toTopOf="@+id/txt_genre" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_genre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space"
+                    android:layout_marginTop="@dimen/space"
+                    android:textAppearance="@style/TextAppearance.App.TextView.Normal"
+                    app:layout_constraintStart_toEndOf="@+id/image_circle_genre"
+                    app:layout_constraintTop_toBottomOf="@+id/desc"
+                    tools:text="Action, Comedy" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txt_lable_produce"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_x2"
+                    android:text="@string/label_production_companies"
+                    android:textAppearance="@style/TextAppearance.App.TextView.Bold"
+                    app:layout_constraintStart_toStartOf="@+id/image_circle"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_date" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_companies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/txt_lable_produce"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_lable_produce"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/adapter_production_by" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <color name="colorPrimary">@color/onyx</color>
+    <color name="colorPrimaryDark">@color/onyx</color>
+    <color name="colorAccent">@color/onyx</color>
+
+    <color name="white">#FFF</color>
+    <color name="black">#000000</color>
+    <color name="onyx">#101010</color>
+    <color name="medium_electric_blue">#004998</color>
+    <color name="prince_ton_orange">#f99500</color>
+    <color name="manatee">#979797</color>
+    <color name="gainsboro">#dfdfdf</color>
+    <color name="red">#ff0000</color>
+    <color name="transparent_gray">#10CCCCCC</color>
+    <color name="cool_grey">#90949c</color>
+
+</resources>
+
