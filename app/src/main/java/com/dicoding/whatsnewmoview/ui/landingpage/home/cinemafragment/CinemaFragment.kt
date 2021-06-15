@@ -1,12 +1,12 @@
 package com.dicoding.whatsnewmoview.ui.landingpage.home.cinemafragment
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.paging.PagingData
@@ -86,7 +86,7 @@ class CinemaFragment : BaseFragment() {
         }
 
         adapterCinema.setOnclickListener(object : RecyclerViewItemClickListener<ListMovieDto> {
-            override fun itemClick(item: ListMovieDto?, state: Int) {
+            override fun itemClick(item: ListMovieDto?, viewId: Int) {
                 item?.let {
                     startActivity(DetailMovieActivity.getIntent(getBaseActivity(), it))
                 }

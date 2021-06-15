@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/onyx"
     tools:context=".ui.landingpage.home.cinemafragment.CinemaFragment">
 
     <androidx.appcompat.widget.Toolbar
@@ -41,7 +40,8 @@
                     android:id="@+id/imageView"
                     android:layout_width="@dimen/space_x16"
                     android:layout_height="@dimen/space_x16"
-                    android:src="@drawable/ic_video_player" />
+                    android:src="@drawable/ic_video_player"
+                    android:contentDescription="@string/desc_empty_data_img"/>
 
                 <TextView
                     android:layout_width="wrap_content"

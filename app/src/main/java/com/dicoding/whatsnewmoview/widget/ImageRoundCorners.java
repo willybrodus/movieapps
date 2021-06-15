@@ -33,10 +33,9 @@ public class ImageRoundCorners extends androidx.appcompat.widget.AppCompatImageV
 
     public ImageRoundCorners(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RoundishImageView);
-        cornerRadius = a.getDimensionPixelSize(R.styleable.RoundishImageView_cornerRadius, 0);
-        roundedCorners = a.getInt(R.styleable.RoundishImageView_roundedCorners, CORNER_NONE);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ImageRoundCorners);
+        cornerRadius = a.getDimensionPixelSize(R.styleable.ImageRoundCorners_cornerRadius, 0);
+        roundedCorners = a.getInt(R.styleable.ImageRoundCorners_roundedCorners, CORNER_NONE);
         a.recycle();
     }
 

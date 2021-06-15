@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/space_x2"
-    android:background="@color/colorPrimary">
+    android:padding="@dimen/space_x2">
 
     <com.dicoding.whatsnewmoview.widget.ImageRoundCorners
         android:id="@+id/imageRoundCorners"

@@ -12,7 +12,6 @@ def versionMinor = 0
 def versionPatch = 2
 
 def packageName = "com.dicoding.whatsnewmovie"
-def appName = "Whats Movie"
 
 android {
     compileSdkVersion 30
@@ -66,7 +65,6 @@ android {
     flavorDimensions "mode"
     productFlavors {
         dev {
-            resValue "string", "app_alias_name", appName
             dimension "mode"
             buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/\""
         }

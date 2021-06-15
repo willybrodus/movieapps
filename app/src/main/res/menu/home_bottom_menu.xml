@@ -5,16 +5,16 @@
         android:id="@+id/menu_movie"
         android:icon="@drawable/ic_cinema"
         android:title="@string/label_menu_cinema"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
     <item
             android:id="@+id/menu_favorite"
         android:title="@string/label_favorite_cinema"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_serial"
         android:icon="@drawable/ic_serial_tv"
         android:title="@string/label_menu_serial"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 </menu>

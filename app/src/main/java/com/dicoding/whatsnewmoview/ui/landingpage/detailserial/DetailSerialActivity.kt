@@ -76,7 +76,7 @@ class DetailSerialActivity : BaseActivity() {
     }
 
     private fun initLoveListener(){
-        binding.favorite.setOnCheckedChangeListener { compoundButton, isChecked ->
+        binding.favorite.setOnCheckedChangeListener { _, isChecked ->
             if(isChecked){
                 viewModel.saveToFavorite()
             } else {

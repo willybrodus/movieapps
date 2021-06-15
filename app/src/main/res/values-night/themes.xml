@@ -13,6 +13,7 @@
         <item name="homeAsUpIndicator">@drawable/ic_arrow_back_white</item>
         <item name="buttonStyle">@style/Widget.Button.PrimaryButton</item>
         <item name="alertDialogTheme">@style/AlertDialogTheme</item>
+        <item name="android:background">@color/onyx</item>
 
     </style>
 

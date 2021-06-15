@@ -7,7 +7,10 @@ import com.dicoding.whatsnewmoview.InstantTaskExecutorRule
 import com.dicoding.whatsnewmoview.TestSchedulerProvider
 import io.reactivex.Flowable
 import io.reactivex.Single
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.ObsoleteCoroutinesApi
+import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.Assert

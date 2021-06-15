@@ -1,12 +1,12 @@
 package com.dicoding.whatsnewmoview.ui.landingpage.home.serialfragment
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.paging.PagingData
@@ -89,7 +89,7 @@ class SerialFragment : BaseFragment() {
         }
 
         adapterSerial.setOnclickListener(object : RecyclerViewItemClickListener<ListMovieDto> {
-            override fun itemClick(item: ListMovieDto?, state: Int) {
+            override fun itemClick(item: ListMovieDto?, viewId: Int) {
                 item?.let {
                     startActivity(DetailSerialActivity.getIntent(getBaseActivity(), it))
                 }

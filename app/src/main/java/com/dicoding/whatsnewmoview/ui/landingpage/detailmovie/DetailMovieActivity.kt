@@ -7,12 +7,13 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.dicoding.whatsnewmoview.R
 import com.company.core.data.model.DetailMovieDto
 import com.company.core.data.model.ListMovieDto
 import com.company.core.data.model.ProduceByDto
 import com.company.core.data.model.RemoteState
-import com.company.core.data.model.RemoteState.*
+import com.company.core.data.model.RemoteState.InProgress
+import com.company.core.data.model.RemoteState.RemoteData
+import com.dicoding.whatsnewmoview.R
 import com.dicoding.whatsnewmoview.databinding.ActivityDetailMovieBinding
 import com.dicoding.whatsnewmoview.ui.base.BaseActivity
 import com.dicoding.whatsnewmoview.ui.landingpage.AdapterProduceBye
@@ -79,7 +80,7 @@ class DetailMovieActivity : BaseActivity() {
     }
 
     private fun initLoveListener(){
-        binding.favorite.setOnCheckedChangeListener { compoundButton, isChecked ->
+        binding.favorite.setOnCheckedChangeListener { _, isChecked ->
             if(isChecked){
                 viewModel.saveToFavorite()
             } else {

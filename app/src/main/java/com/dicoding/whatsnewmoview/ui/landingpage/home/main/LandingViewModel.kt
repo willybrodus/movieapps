@@ -1,8 +1,8 @@
 package com.dicoding.whatsnewmoview.ui.landingpage.home.main
 
 import com.company.core.data.domain.MovieUseCase
-import com.dicoding.whatsnewmoview.ui.base.BaseViewModel
 import com.company.core.utility.rx.SchedulerProvider
+import com.dicoding.whatsnewmoview.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

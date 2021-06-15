@@ -103,7 +103,7 @@ class FavoriteFragment : BaseFragment() {
         }
 
         adapterSerial.setOnclickListener(object : RecyclerViewItemClickListener<ListMovieDto> {
-            override fun itemClick(item: ListMovieDto?, state: Int) {
+            override fun itemClick(item: ListMovieDto?, viewId: Int) {
                 item?.let {
                     if (it.isSerial){
                         startActivity(DetailSerialActivity.getIntent(getBaseActivity(), it))
