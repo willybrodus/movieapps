@@ -187,10 +187,12 @@ public class EllipsizingTextViewMultiLine extends androidx.appcompat.widget.AppC
     }
 
     private Layout createWorkingLayout(CharSequence workingText) {
-        return new StaticLayout(workingText, getPaint(),
-                getWidth() - getPaddingLeft() - getPaddingRight(),
-                Layout.Alignment.ALIGN_NORMAL, lineSpacingMultiplier,
-                lineAdditionalVerticalPadding, false /* includepad */);
+        StaticLayout.Builder sb =  StaticLayout.Builder.obtain(workingText, 0, workingText.length(), getPaint(), getWidth() - getPaddingLeft() - getPaddingRight())
+                    .setAlignment(Layout.Alignment.ALIGN_NORMAL)
+                    .setLineSpacing(lineSpacingMultiplier,
+                            lineAdditionalVerticalPadding)
+                    .setIncludePad (false);
+            return sb.build();
     }
 
     @Override
