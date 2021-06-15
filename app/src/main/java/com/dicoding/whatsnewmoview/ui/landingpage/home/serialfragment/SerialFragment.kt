@@ -28,7 +28,9 @@ import javax.inject.Inject
 class SerialFragment : BaseFragment() {
 
     private lateinit var viewModel: SerialViewModel
-    private lateinit var binding: FragmentSerialBinding
+    private var _binding: FragmentSerialBinding? = null
+    private val binding get() = _binding!!
+
 
     @Inject
     lateinit var adapterSerial: AdapterListMoviePaging
@@ -40,8 +42,9 @@ class SerialFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSerialBinding.inflate(inflater, container, false)
-        return binding.root
+        _binding = FragmentSerialBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     @ExperimentalCoroutinesApi
@@ -116,6 +119,12 @@ class SerialFragment : BaseFragment() {
         binding.swipeLayout.setOnRefreshListener {
             viewModel.getListSerial()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.rvList.adapter = null
+        _binding = null
     }
 
 }

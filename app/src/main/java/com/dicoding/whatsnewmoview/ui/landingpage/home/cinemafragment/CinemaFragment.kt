@@ -28,7 +28,8 @@ import javax.inject.Inject
 class CinemaFragment : BaseFragment() {
 
     private lateinit var viewModel: CinemaViewModel
-    private lateinit var binding: FragmentCinemaBinding
+    private var _binding: FragmentCinemaBinding? = null
+    private val binding get() = _binding!!
 
     @Inject
     lateinit var adapterCinema: AdapterListMoviePaging
@@ -40,8 +41,9 @@ class CinemaFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCinemaBinding.inflate(inflater, container, false)
-        return binding.root
+        _binding = FragmentCinemaBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     @ExperimentalCoroutinesApi
@@ -115,5 +117,11 @@ class CinemaFragment : BaseFragment() {
         binding.swipeLayout.setOnRefreshListener {
             viewModel.getListMovie()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.rvListCinema.adapter = null
+        _binding = null
     }
 }

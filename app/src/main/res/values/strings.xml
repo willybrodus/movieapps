@@ -6,5 +6,6 @@
     <string name="label_latest_eps">Latest Episode</string>
     <string name="label_eps"> Eps %1$s S %2$s </string>
     <string name="label_favorite_cinema">My Favorite</string>
+    <string name="desc_image">Image Poster</string>
 
 </resources>

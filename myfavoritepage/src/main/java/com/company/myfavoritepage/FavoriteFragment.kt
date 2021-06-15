@@ -28,7 +28,8 @@ import javax.inject.Inject
 
 class FavoriteFragment : BaseFragment() {
 
-    private lateinit var binding: FavoriteFragmentBinding
+    private var _binding: FavoriteFragmentBinding? = null
+    private val binding get() = _binding!!
 
     @Inject
     lateinit var factory: ViewModelFactory
@@ -47,8 +48,9 @@ class FavoriteFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FavoriteFragmentBinding.inflate(inflater, container, false)
-        return binding.root
+        _binding = FavoriteFragmentBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     @ExperimentalCoroutinesApi
@@ -137,4 +139,9 @@ class FavoriteFragment : BaseFragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.rvListFavorite.adapter = null
+        _binding = null
+    }
 }
