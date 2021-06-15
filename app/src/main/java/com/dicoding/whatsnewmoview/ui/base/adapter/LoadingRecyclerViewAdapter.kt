@@ -10,7 +10,7 @@ import com.company.core.databinding.LayoutLoadingAdapterRecylerViewBinding
 import com.dicoding.whatsnewmoview.R
 import javax.inject.Inject
 
-class LoadingRecylerViewAdapter @Inject constructor(): LoadStateAdapter<LoadingRecylerViewAdapter.LoadingStateViewHolder>() {
+class LoadingRecyclerViewAdapter @Inject constructor(): LoadStateAdapter<LoadingRecyclerViewAdapter.LoadingStateViewHolder>() {
     override fun onBindViewHolder(holder: LoadingStateViewHolder, loadState: LoadState) {
         holder.bind(loadState)
     }

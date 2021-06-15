@@ -86,6 +86,7 @@
                     android:id="@+id/favorite"
                     android:layout_width="@dimen/space_x3_half"
                     android:layout_height="@dimen/space_x3_half"
+                    android:layout_marginTop="@dimen/space_half"
                     android:background="@drawable/ic_love_user"
                     android:button="@null"
                     android:checked="false"
@@ -99,7 +100,7 @@
                     android:layout_marginStart="@dimen/space_x2"
                     android:layout_marginTop="@dimen/space_x2"
                     android:textAppearance="@style/TextAppearance.App.TextView.Bold.Big"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/favorite"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/appCompatImageView2"
                     tools:text="What Are You Thinking?" />
@@ -111,7 +112,7 @@
                     android:layout_marginStart="@dimen/space_x2"
                     android:textAppearance="@style/TextAppearance.App.TextView.Bold.Big"
                     android:textSize="@dimen/text_14"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/txt_title"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txt_title"
                     tools:text="How do you do?" />
@@ -159,13 +160,15 @@
                     app:layout_constraintStart_toEndOf="@+id/txt_date"
                     app:layout_constraintTop_toTopOf="@+id/txt_genre" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <com.dicoding.whatsnewmoview.widget.EllipsizingTextViewMultiLine
                     android:id="@+id/txt_genre"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/space"
                     android:layout_marginTop="@dimen/space"
+                    android:maxLines="1"
                     android:textAppearance="@style/TextAppearance.App.TextView.Normal"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/image_circle_genre"
                     app:layout_constraintTop_toBottomOf="@+id/desc"
                     tools:text="Action, Comedy" />

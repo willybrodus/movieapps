@@ -15,7 +15,7 @@ import com.company.core.data.model.ListMovieDto
 import com.company.myfavoritepage.databinding.FavoriteFragmentBinding
 import com.dicoding.whatsnewmoview.di.MyFavoriteModuleDependencies
 import com.dicoding.whatsnewmoview.ui.base.BaseFragment
-import com.dicoding.whatsnewmoview.ui.base.adapter.LoadingRecylerViewAdapter
+import com.dicoding.whatsnewmoview.ui.base.adapter.LoadingRecyclerViewAdapter
 import com.dicoding.whatsnewmoview.ui.base.adapter.RecyclerViewItemClickListener
 import com.dicoding.whatsnewmoview.ui.landingpage.detailmovie.DetailMovieActivity
 import com.dicoding.whatsnewmoview.ui.landingpage.detailserial.DetailSerialActivity
@@ -42,7 +42,7 @@ class FavoriteFragment : BaseFragment() {
     lateinit var adapterSerial: AdapterListMoviePaging
 
     @Inject
-    lateinit var adapterLoading: LoadingRecylerViewAdapter
+    lateinit var adapterLoading: LoadingRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

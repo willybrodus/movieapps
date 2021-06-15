@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.company.core.data.model.ListMovieDto
 import com.dicoding.whatsnewmoview.databinding.FragmentSerialBinding
 import com.dicoding.whatsnewmoview.ui.base.BaseFragment
-import com.dicoding.whatsnewmoview.ui.base.adapter.LoadingRecylerViewAdapter
+import com.dicoding.whatsnewmoview.ui.base.adapter.LoadingRecyclerViewAdapter
 import com.dicoding.whatsnewmoview.ui.base.adapter.RecyclerViewItemClickListener
 import com.dicoding.whatsnewmoview.ui.landingpage.detailserial.DetailSerialActivity
 import com.dicoding.whatsnewmoview.ui.landingpage.home.AdapterListMoviePaging
@@ -36,7 +36,7 @@ class SerialFragment : BaseFragment() {
     lateinit var adapterSerial: AdapterListMoviePaging
 
     @Inject
-    lateinit var adapterLoading: LoadingRecylerViewAdapter
+    lateinit var adapterLoading: LoadingRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

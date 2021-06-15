@@ -1,27 +1,17 @@
 package com.dicoding.whatsnewmoview.widget;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.VectorDrawable;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -29,7 +19,6 @@ import android.widget.TextView;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
@@ -63,7 +52,7 @@ public class TopSnackbar {
                     ((TopSnackbar) message.obj).showView();
                     return true;
                 case MSG_DISMISS:
-                    ((TopSnackbar) message.obj).hideView(message.arg1);
+                    ((TopSnackbar) message.obj).hideView();
                     return true;
             }
             return false;
@@ -85,7 +74,6 @@ public class TopSnackbar {
         }
     };
     private int mDuration;
-    private Callback mCallback;
     private TopSnackbar(ViewGroup parent) {
         mParent = parent;
         mContext = parent.getContext();
@@ -130,33 +118,6 @@ public class TopSnackbar {
         return fallback;
     }
 
-    private static float convertDpToPixel(float dp, Context context) {
-        Resources resources = context.getResources();
-        DisplayMetrics metrics = resources.getDisplayMetrics();
-        return dp * ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private static Bitmap getBitmap(VectorDrawable vectorDrawable) {
-        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),
-                vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        vectorDrawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        vectorDrawable.draw(canvas);
-        return bitmap;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    private static Bitmap getBitmap(Drawable drawable) {
-        if (drawable instanceof BitmapDrawable) {
-            return ((BitmapDrawable) drawable).getBitmap();
-        } else if (drawable instanceof VectorDrawable) {
-            return getBitmap((VectorDrawable) drawable);
-        } else {
-            throw new IllegalArgumentException("unsupported drawable type");
-        }
-    }
-
     @Deprecated
     public TopSnackbar addIcon(int resource_id, int size) {
         final TextView tv = mView.getMessageView();
@@ -166,31 +127,10 @@ public class TopSnackbar {
         return this;
     }
 
-    @NonNull
-    public TopSnackbar setAction(CharSequence text, final View.OnClickListener listener) {
-        final TextView tv = mView.getActionView();
-
-        if (TextUtils.isEmpty(text) || listener == null) {
-            tv.setVisibility(View.GONE);
-            tv.setOnClickListener(null);
-        } else {
-            tv.setVisibility(View.VISIBLE);
-            tv.setText(text);
-            tv.setOnClickListener(view -> {
-                listener.onClick(view);
-
-                dispatchDismiss(Callback.DISMISS_EVENT_ACTION);
-            });
-        }
-        return this;
-    }
-
-    @NonNull
     public void setText(@NonNull CharSequence message) {
         final TextView tv = mView.getMessageView();
         tv.setText(message);
     }
-
 
     public void setDuration(@Duration int duration) {
         mDuration = duration;
@@ -206,9 +146,9 @@ public class TopSnackbar {
                 .show(mDuration, mManagerCallback);
     }
 
-    private void dispatchDismiss(@Callback.DismissEvent int event) {
+    private void dispatchDismiss() {
         SnackbarManager.getInstance()
-                .dismiss(mManagerCallback, event);
+                .dismiss(mManagerCallback, Callback.DISMISS_EVENT_SWIPE);
     }
 
     public boolean isShownOrQueued() {
@@ -230,7 +170,7 @@ public class TopSnackbar {
                 behavior.setListener(new SwipeDismissBehavior.OnDismissListener() {
                     @Override
                     public void onDismiss(View view) {
-                        dispatchDismiss(Callback.DISMISS_EVENT_SWIPE);
+                        dispatchDismiss();
                     }
 
                     @Override
@@ -255,18 +195,9 @@ public class TopSnackbar {
             mParent.addView(mView);
         }
 
-        mView.setOnAttachStateChangeListener(new SnackbarLayout.OnAttachStateChangeListener() {
-            @Override
-            public void onViewAttachedToWindow() {
-            }
-
-            @Override
-            public void onViewDetachedFromWindow() {
-                if (isShownOrQueued()) {
-
-
-                    sHandler.post(() -> onViewHidden(Callback.DISMISS_EVENT_MANUAL));
-                }
+        mView.setOnAttachStateChangeListener(() -> {
+            if (isShownOrQueued()) {
+                sHandler.post(this::onViewHidden);
             }
         });
 
@@ -297,9 +228,6 @@ public class TopSnackbar {
 
                     @Override
                     public void onAnimationEnd(View view) {
-                        if (mCallback != null) {
-                            mCallback.onShown(TopSnackbar.this);
-                        }
                         SnackbarManager.getInstance()
                                 .onShown(mManagerCallback);
                     }
@@ -307,62 +235,37 @@ public class TopSnackbar {
                 .start();
     }
 
-    private void animateViewOut(final int event) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            ViewCompat.animate(mView)
-                    .translationY(-mView.getHeight())
-                    .setInterpolator(AnimationUtil.Companion.getFAST_OUT_SLOW_IN_INTERPOLATOR())
-                    .setDuration(ANIMATION_DURATION)
-                    .setListener(new ViewPropertyAnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationStart(View view) {
-                            mView.animateChildrenOut();
-                        }
+    private void animateViewOut() {
+        ViewCompat.animate(mView)
+                .translationY(-mView.getHeight())
+                .setInterpolator(AnimationUtil.Companion.getFAST_OUT_SLOW_IN_INTERPOLATOR())
+                .setDuration(ANIMATION_DURATION)
+                .setListener(new ViewPropertyAnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationStart(View view) {
+                        mView.animateChildrenOut();
+                    }
 
-                        @Override
-                        public void onAnimationEnd(View view) {
-                            onViewHidden(event);
-                        }
-                    })
-                    .start();
-        } else {
-            Animation anim = AnimationUtils.loadAnimation(mView.getContext(), R.anim.top_out);
-            anim.setInterpolator(AnimationUtil.Companion.getFAST_OUT_SLOW_IN_INTERPOLATOR());
-            anim.setDuration(ANIMATION_DURATION);
-            anim.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    onViewHidden(event);
-                }
-
-                @Override
-                public void onAnimationStart(Animation animation) {
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-                }
-            });
-            mView.startAnimation(anim);
-        }
+                    @Override
+                    public void onAnimationEnd(View view) {
+                        onViewHidden();
+                    }
+                })
+                .start();
     }
 
-    final void hideView(int event) {
+    final void hideView() {
         if (mView.getVisibility() != View.VISIBLE || isBeingDragged()) {
-            onViewHidden(event);
+            onViewHidden();
         } else {
-            animateViewOut(event);
+            animateViewOut();
         }
     }
 
-    private void onViewHidden(int event) {
+    private void onViewHidden() {
 
         SnackbarManager.getInstance()
                 .onDismissed(mManagerCallback);
-
-        if (mCallback != null) {
-            mCallback.onDismissed(this, event);
-        }
 
         final ViewParent parent = mView.getParent();
         if (parent instanceof ViewGroup) {
@@ -394,26 +297,11 @@ public class TopSnackbar {
 
         public static final int DISMISS_EVENT_SWIPE = 0;
 
-        public static final int DISMISS_EVENT_ACTION = 1;
-
         public static final int DISMISS_EVENT_TIMEOUT = 2;
-
-        public static final int DISMISS_EVENT_MANUAL = 3;
 
         public static final int DISMISS_EVENT_CONSECUTIVE = 4;
 
-        abstract void onDismissed(TopSnackbar snackbar, @DismissEvent int event);
 
-        abstract void onShown(TopSnackbar snackbar);
-
-
-        @IntDef({
-                DISMISS_EVENT_SWIPE, DISMISS_EVENT_ACTION, DISMISS_EVENT_TIMEOUT,
-                DISMISS_EVENT_MANUAL, DISMISS_EVENT_CONSECUTIVE
-        })
-        @Retention(RetentionPolicy.SOURCE)
-        public @interface DismissEvent {
-        }
     }
 
     public static class SnackbarLayout extends LinearLayout {
@@ -464,16 +352,12 @@ public class TopSnackbar {
         @Override
         protected void onFinishInflate() {
             super.onFinishInflate();
-            mMessageView = (TextView) findViewById(R.id.snackbar_text);
-            mActionView = (Button) findViewById(R.id.snackbar_action);
+            mMessageView = findViewById(R.id.snackbar_text);
+            mActionView = findViewById(R.id.snackbar_action);
         }
 
         TextView getMessageView() {
             return mMessageView;
-        }
-
-        Button getActionView() {
-            return mActionView;
         }
 
         @Override
@@ -556,14 +440,6 @@ public class TopSnackbar {
         }
 
         @Override
-        protected void onAttachedToWindow() {
-            super.onAttachedToWindow();
-            if (mOnAttachStateChangeListener != null) {
-                mOnAttachStateChangeListener.onViewAttachedToWindow();
-            }
-        }
-
-        @Override
         protected void onDetachedFromWindow() {
             super.onDetachedFromWindow();
             if (mOnAttachStateChangeListener != null) {
@@ -599,8 +475,6 @@ public class TopSnackbar {
         }
 
         interface OnAttachStateChangeListener {
-            void onViewAttachedToWindow();
-
             void onViewDetachedFromWindow();
         }
     }

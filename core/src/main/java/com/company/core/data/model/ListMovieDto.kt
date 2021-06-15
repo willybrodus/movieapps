@@ -51,11 +51,10 @@ data class ListMovieDto(
 
 ): Parcelable{
 
-    fun getGenre() : String {
+    fun getGenre(): String {
         val relational = DataUtility.getDataModelOption()
-        var genre = ""
-        genre = when {
-            isGenreMoreThantwo() -> {
+        return when {
+            isGenreMoreThanTwo() -> {
                 "${relational[genreIds?.get(0)]}, ${relational[genreIds?.get(1)]}, etc"
             }
             genreIds?.size == 2 -> {
@@ -65,13 +64,12 @@ data class ListMovieDto(
                 "${relational[genreIds?.get(0)]}"
             }
             else -> {
-                "Unknow Genre"
+                "Unknown Genre"
             }
         }
-        return genre
     }
 
-    private fun isGenreMoreThantwo() : Boolean{
+    private fun isGenreMoreThanTwo() : Boolean{
         return genreIds?.size?:0 > 2
     }
 

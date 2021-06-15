@@ -92,9 +92,8 @@ data class DetailSerialDto(
     var voteCount: Int? = null,
     var isFavorite : Boolean = false
 ){
-    fun getGenre() : String {
-        var genre = ""
-        genre = when {
+    fun getGenre(): String {
+        return when {
             isGenreMoreThantwo() -> {
                 "${genres?.get(0)?.name}, ${genres?.get(1)?.name}, etc"
             }
@@ -108,7 +107,6 @@ data class DetailSerialDto(
                 "Unknow Genre"
             }
         }
-        return genre
     }
 
     private fun isGenreMoreThantwo() : Boolean{

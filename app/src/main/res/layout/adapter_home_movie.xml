@@ -77,12 +77,13 @@
 
     <com.dicoding.whatsnewmoview.widget.EllipsizingTextViewMultiLine
         android:id="@+id/txt_genre"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space"
         android:layout_marginTop="@dimen/space"
         android:maxLines="1"
         android:textAppearance="@style/TextAppearance.App.TextView.Normal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_circle_genre"
         app:layout_constraintTop_toBottomOf="@+id/desc"
         tools:text="Action, Comedy, etc" />

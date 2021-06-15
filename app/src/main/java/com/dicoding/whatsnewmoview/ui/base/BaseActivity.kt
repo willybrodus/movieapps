@@ -83,9 +83,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     open fun changeStatusBarWhite() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimary)
-        }
+        window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimary)
     }
 
 
