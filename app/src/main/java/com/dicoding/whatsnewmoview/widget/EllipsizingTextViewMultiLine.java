@@ -1,6 +1,5 @@
 package com.dicoding.whatsnewmoview.widget;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -24,7 +23,7 @@ public class EllipsizingTextViewMultiLine extends androidx.appcompat.widget.AppC
         void ellipsizeStateChanged(boolean ellipsized);
     }
 
-    private final List<EllipsizeListener> ellipsizeListeners = new ArrayList<EllipsizeListener>();
+    private final List<EllipsizeListener> ellipsizeListeners = new ArrayList<>();
     private boolean isEllipsized;
     private boolean isStale;
     private boolean programmaticChange;
@@ -66,7 +65,6 @@ public class EllipsizingTextViewMultiLine extends androidx.appcompat.widget.AppC
         isStale = true;
     }
 
-    @SuppressLint("Override")
     public int getMaxLines() {
         return maxLines;
     }

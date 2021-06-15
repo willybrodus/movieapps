@@ -60,7 +60,7 @@ class LandingActivityTest {
         title = "Godzilla vs Kong"
     }
 
-    val dataSerial = ListMovieDto().apply {
+    private val dataSerial = ListMovieDto().apply {
         genreIds = listOf(1, 2, 3)
         id= 1416
         originalTitle = "Grey's Anatomy"

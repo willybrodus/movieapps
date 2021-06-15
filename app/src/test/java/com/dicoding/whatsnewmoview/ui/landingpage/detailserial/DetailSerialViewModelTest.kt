@@ -6,7 +6,6 @@ import com.company.core.data.model.ListMovieDto
 import com.company.core.data.model.RemoteState
 import com.dicoding.whatsnewmoview.InstantTaskExecutorRule
 import com.dicoding.whatsnewmoview.TestSchedulerProvider
-import com.dicoding.whatsnewmoview.util.StatusConnection
 import com.dicoding.whatsnewmoview.util.ext.getOrAwaitValue
 import io.reactivex.Maybe
 import io.reactivex.Observable
@@ -15,7 +14,6 @@ import org.junit.Assert
 import org.mockito.Mockito
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.gherkin.Feature
-import java.net.SocketException
 
 @ExperimentalCoroutinesApi
 object DetailSerialViewModelTest : Spek({

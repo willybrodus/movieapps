@@ -19,8 +19,8 @@ import javax.inject.Singleton
 )
 class TestDbModule {
 
-    val passphrase: ByteArray = SQLiteDatabase.getBytes("movielist".toCharArray())
-    val factory = SupportFactory(passphrase)
+    private val passphrase: ByteArray = SQLiteDatabase.getBytes("movielist".toCharArray())
+    private val factory = SupportFactory(passphrase)
 
     @Singleton
     @Provides

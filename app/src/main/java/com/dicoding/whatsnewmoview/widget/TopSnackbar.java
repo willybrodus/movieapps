@@ -56,19 +56,16 @@ public class TopSnackbar {
     private static final int MSG_DISMISS = 1;
 
     static {
-        sHandler = new Handler(Looper.getMainLooper(), new Handler.Callback() {
-            @Override
-            public boolean handleMessage(Message message) {
-                switch (message.what) {
-                    case MSG_SHOW:
-                        ((TopSnackbar) message.obj).showView();
-                        return true;
-                    case MSG_DISMISS:
-                        ((TopSnackbar) message.obj).hideView(message.arg1);
-                        return true;
-                }
-                return false;
+        sHandler = new Handler(Looper.getMainLooper(), message -> {
+            switch (message.what) {
+                case MSG_SHOW:
+                    ((TopSnackbar) message.obj).showView();
+                    return true;
+                case MSG_DISMISS:
+                    ((TopSnackbar) message.obj).hideView(message.arg1);
+                    return true;
             }
+            return false;
         });
     }
 
@@ -435,7 +432,7 @@ public class TopSnackbar {
         private TextView mMessageView;
         private Button mActionView;
 
-        private int mMaxWidth;
+        private final int mMaxWidth;
         private final int mMaxInlineActionWidth;
         private OnLayoutChangeListener mOnLayoutChangeListener;
         private OnAttachStateChangeListener mOnAttachStateChangeListener;
@@ -627,7 +624,7 @@ public class TopSnackbar {
         }
 
         @Override
-        public boolean onInterceptTouchEvent(CoordinatorLayout parent, SnackbarLayout child,
+        public boolean onInterceptTouchEvent(CoordinatorLayout parent, @NotNull SnackbarLayout child,
                                              MotionEvent event) {
 
 

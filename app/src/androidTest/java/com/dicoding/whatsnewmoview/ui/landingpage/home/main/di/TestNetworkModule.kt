@@ -5,7 +5,6 @@ import com.company.core.data.source.remote.RequestInterceptor
 import com.company.core.data.source.remote.ResponseInterceptor
 import com.company.core.di.NetworkModule
 import com.company.core.utility.Constant
-import com.dicoding.whatsnewmoview.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent

@@ -2,16 +2,11 @@ package com.dicoding.whatsnewmoview.ui.landingpage.home.main.di
 
 import android.app.Application
 import android.content.Context
-import androidx.room.Room
-import com.company.core.data.source.db.MyFavoriteDatabase
 import com.company.core.di.AppModule
-import com.company.core.utility.Constant
 import com.company.core.utility.rx.AppSchedulerProvider
 import com.company.core.utility.rx.SchedulerProvider
-import com.dicoding.whatsnewmoview.R
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
 import io.github.inflationx.calligraphy3.CalligraphyConfig
