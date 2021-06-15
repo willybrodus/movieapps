@@ -68,23 +68,5 @@ object DetailSerialViewModelTest : Spek({
                 Assert.assertEquals("Falcon and Winter Solder" ,dataResult.result.originalName)
             }
         }
-
-        Scenario("get detail movie data properly when network is troble") {
-            Given("Exception") {
-                Mockito.`when`(movieRepository.getDetailSerial(1)).thenReturn(
-                    Observable.error(SocketException("Time Out Exception"))
-                )
-            }
-
-            When("request data") {
-                viewModel.setSerial(data)
-                viewModel.getDetailSerial()
-            }
-
-            Then("Should be _throwable not null and is StatusConnectException") {
-                Assert.assertNotNull(viewModel.throwable.getOrAwaitValue())
-                Assert.assertEquals(true, viewModel.throwable.getOrAwaitValue() is StatusConnection.StatusConnectException)
-            }
-        }
     }
 })

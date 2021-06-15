@@ -68,23 +68,5 @@ object DetailMovieViewModelTest : Spek({
                 Assert.assertEquals("Goodzila vs Kong" ,dataResult.result.originalTitle)
             }
         }
-
-        Scenario("get detail movie data properly when network is troble") {
-            Given("Exception") {
-                `when`(movieRepository.getDetailMovie(1)).thenReturn(
-                    Observable.error(SocketException("Time Out Exception"))
-                )
-            }
-
-            When("request data") {
-                viewModel.setMovie(data)
-                viewModel.getDetailMoview()
-            }
-
-            Then("Should be _throwable not null and is StatusConnectException") {
-                Assert.assertNotNull(viewModel.throwable.getOrAwaitValue())
-                Assert.assertTrue(viewModel.throwable.getOrAwaitValue() is StatusConnection.StatusConnectException)
-            }
-        }
     }
 })
