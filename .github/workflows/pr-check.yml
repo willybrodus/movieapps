@@ -23,7 +23,7 @@ jobs:
       - name: Make Gradle executable
         run: chmod +x ./gradlew
       - name: Build Dev APK
-        run: ./gradlew build
+        run: ./gradlew build --stacktrace
       - name: Upload apk
         uses: actions/upload-artifact@v2
         with:
