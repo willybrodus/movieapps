@@ -22,8 +22,8 @@ jobs:
           java-version: 11
       - name: Make Gradle executable
         run: chmod +x ./gradlew
-      - name: Build Dev APK
-        run: ./gradlew build --stacktrace
+      - name: Build debug APK
+        run: bash ./gradlew assembleDebug --stacktrace
       - name: Upload apk
         uses: actions/upload-artifact@v2
         with:
