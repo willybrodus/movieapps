@@ -5,7 +5,7 @@
 
     <dist:module
         dist:instant="false"
-        dist:title="@string/title_myfavoritepage">
+        dist:title="@string/label_favorite_cinema">
         <dist:delivery>
             <dist:install-time />
         </dist:delivery>

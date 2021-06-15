@@ -63,11 +63,8 @@ public class SnackbarManager {
                 mNextSnackbar = new SnackbarRecord(duration, callback);
             }
 
-            if (mCurrentSnackbar != null && cancelSnackbarLocked(mCurrentSnackbar,
-                    TopSnackbar.Callback.DISMISS_EVENT_CONSECUTIVE)) {
-                // If we currently have a TopSnackbar, try and cancel it and wait in line
-                return;
-            } else {
+            if(!(mCurrentSnackbar != null && cancelSnackbarLocked(mCurrentSnackbar,
+                    TopSnackbar.Callback.DISMISS_EVENT_CONSECUTIVE))){
                 // Clear out the current snackbar
                 mCurrentSnackbar = null;
                 // Otherwise, just show it now

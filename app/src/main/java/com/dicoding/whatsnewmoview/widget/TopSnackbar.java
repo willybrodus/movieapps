@@ -12,7 +12,6 @@ import android.graphics.drawable.VectorDrawable;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Message;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -32,6 +31,7 @@ import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.ViewPropertyAnimatorListenerAdapter;
 
@@ -43,6 +43,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.util.Objects;
 
 public class TopSnackbar {
 
@@ -160,8 +161,7 @@ public class TopSnackbar {
     public TopSnackbar addIcon(int resource_id, int size) {
         final TextView tv = mView.getMessageView();
 
-        tv.setCompoundDrawablesWithIntrinsicBounds(new BitmapDrawable(mContext.getResources(), Bitmap.createScaledBitmap(((BitmapDrawable) (mContext.getResources()
-                .getDrawable(resource_id))).getBitmap(), size, size, true)), null, null, null);
+        tv.setCompoundDrawablesWithIntrinsicBounds(new BitmapDrawable(mContext.getResources(), Bitmap.createScaledBitmap(((BitmapDrawable) (Objects.requireNonNull(ContextCompat.getDrawable(mContext, resource_id)))).getBitmap(), size, size, true)), null, null, null);
 
         return this;
     }
@@ -176,23 +176,19 @@ public class TopSnackbar {
         } else {
             tv.setVisibility(View.VISIBLE);
             tv.setText(text);
-            tv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onClick(view);
+            tv.setOnClickListener(view -> {
+                listener.onClick(view);
 
-                    dispatchDismiss(Callback.DISMISS_EVENT_ACTION);
-                }
+                dispatchDismiss(Callback.DISMISS_EVENT_ACTION);
             });
         }
         return this;
     }
 
     @NonNull
-    public TopSnackbar setText(@NonNull CharSequence message) {
+    public void setText(@NonNull CharSequence message) {
         final TextView tv = mView.getMessageView();
         tv.setText(message);
-        return this;
     }
 
 
@@ -269,12 +265,7 @@ public class TopSnackbar {
                 if (isShownOrQueued()) {
 
 
-                    sHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            onViewHidden(Callback.DISMISS_EVENT_MANUAL);
-                        }
-                    });
+                    sHandler.post(() -> onViewHidden(Callback.DISMISS_EVENT_MANUAL));
                 }
             }
         });
@@ -284,12 +275,9 @@ public class TopSnackbar {
             animateViewIn();
         } else {
 
-            mView.setOnLayoutChangeListener(new SnackbarLayout.OnLayoutChangeListener() {
-                @Override
-                public void onLayoutChange() {
-                    animateViewIn();
-                    mView.setOnLayoutChangeListener(null);
-                }
+            mView.setOnLayoutChangeListener(() -> {
+                animateViewIn();
+                mView.setOnLayoutChangeListener(null);
             });
         }
     }

@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 
 public class EllipsizingTextViewMultiLine extends androidx.appcompat.widget.AppCompatTextView {
     private static final String ELLIPSIS = "\u2026";
-    private static final Pattern DEFAULT_END_PUNCTUATION = Pattern.compile("[\\.,\u2026;\\:\\s]*$", Pattern.DOTALL);
+    private static final Pattern DEFAULT_END_PUNCTUATION = Pattern.compile("[.,\u2026;:\\s]*$", Pattern.DOTALL);
 
     public interface EllipsizeListener {
         void ellipsizeStateChanged(boolean ellipsized);
