@@ -24,10 +24,19 @@ jobs:
         run: chmod +x ./gradlew
       - name: Build Dev APK
         run: ./gradlew build
-      - name: Build Dev APK
-        run: ./gradlew assembleDebug
       - name: Upload apk
         uses: actions/upload-artifact@v2
         with:
           name: debug apk
           path: app/build/outputs/apk/debug/app-debug.apk
+      - name: Upload html test report
+        uses: actions/upload-artifact@v2
+        with:
+          name: index.html
+          path: app/build/reports/tests/testDebugUnitTest/index.html
+
+      - name: Upload test report directory
+        uses: actions/upload-artifact@v2
+        with:
+          name: testDebugStuff
+          path: app/build/reports/tests/testDebugUnitTest/
