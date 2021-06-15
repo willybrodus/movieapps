@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingLeft="@dimen/space"
-    android:paddingRight="@dimen/space"
+    android:paddingStart="@dimen/space"
+    android:paddingEnd="@dimen/space"
     android:paddingTop="@dimen/space_x2"
     android:paddingBottom="@dimen/space_x2">
 
@@ -23,7 +23,7 @@
         android:id="@+id/txt_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/space_x2"
+        android:paddingStart="@dimen/space_x2"
         android:textAppearance="@style/TextAppearance.App.TextView.Bold"
         app:layout_constraintStart_toEndOf="@+id/img_logo_companies"
         app:layout_constraintTop_toTopOf="@+id/img_logo_companies"
@@ -33,7 +33,7 @@
         android:id="@+id/txt_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/space_x2"
+        android:paddingStart="@dimen/space_x2"
         android:textSize="@dimen/text_12"
         android:textAppearance="@style/TextAppearance.App.TextView.Bold"
         app:layout_constraintBottom_toBottomOf="@+id/img_logo_companies"
