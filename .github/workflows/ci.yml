@@ -22,7 +22,7 @@ jobs:
       - name: Unit tests
         run: bash ./gradlew test --stacktrace
 
-  apk:
+apk:
     name: Generate APK
     runs-on: ubuntu-latest
 
