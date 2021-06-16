@@ -1,12 +1,8 @@
 package com.company.core.data.repository
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.rxjava2.flowable
 import com.company.core.data.model.ListMovieDto
 import com.company.core.data.source.db.DatabaseSource
-import com.company.core.data.source.paging.FavoritePagingSource
 import com.company.core.data.source.remote.AppRemoteSource
 import io.reactivex.Flowable
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -34,17 +30,6 @@ class MovieRepository @Inject constructor(private val api: AppRemoteSource, priv
 
     override fun getFilmFavorite(id : Int) = db.getFilmFavorite(id.toString())
 
-    @ExperimentalCoroutinesApi
-    override fun getAllFilmFavorite(): Flowable<PagingData<ListMovieDto>> {
-        return Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = true,
-                prefetchDistance = 5,
-                initialLoadSize = 40
-            ),
-            pagingSourceFactory = { FavoritePagingSource(db) }
-        ).flowable
-    }
+    override fun getAllFilmFavorite(): Flowable<List<ListMovieDto>> = db.getAllFilmFavorite()
 
 }

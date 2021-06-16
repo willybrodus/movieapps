@@ -23,5 +23,5 @@ interface IMovieRepository {
 
     fun getFilmFavorite(id: Int): Maybe<ListMovieDto>
 
-    fun getAllFilmFavorite(): Flowable<PagingData<ListMovieDto>>
+    fun getAllFilmFavorite(): Flowable<List<ListMovieDto>>
 }

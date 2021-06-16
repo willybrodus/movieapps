@@ -29,26 +29,3 @@ abstract class BaseRxPagingSource<singeleDataType : Any>(val startingpage : Int 
     }
 
 }
-
-abstract class BaseRxPagingSourceRoom<singeleDataType : Any> : RxPagingSource<Int, singeleDataType>(){
-
-    abstract override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, singeleDataType>>
-
-    open fun toLoadResult(data: List<singeleDataType>, params: LoadParams<Int>): LoadResult<Int, singeleDataType> {
-        return try{
-            LoadResult.Page(
-                data = data,
-                prevKey = null,
-                nextKey =null
-            )
-        } catch (e: IOException){
-            LoadResult.Error(e)
-        } catch (h: HttpException) {
-            LoadResult.Error(h)
-        } catch (i : IndexOutOfBoundsException){
-            LoadResult.Error(i)
-        }
-
-    }
-
-}

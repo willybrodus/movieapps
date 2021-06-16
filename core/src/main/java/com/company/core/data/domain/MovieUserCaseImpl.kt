@@ -28,6 +28,5 @@ class MovieUserCaseImpl@Inject constructor(private val movieRepository: MovieRep
 
     override fun getFilmFavorite(id: Int): Maybe<ListMovieDto> = movieRepository.getFilmFavorite(id)
 
-    @ExperimentalCoroutinesApi
-    override fun getAllFilmFavorite(): Flowable<PagingData<ListMovieDto>> = movieRepository.getAllFilmFavorite()
+    override fun getAllFilmFavorite(): Flowable<List<ListMovieDto>> = movieRepository.getAllFilmFavorite()
 }

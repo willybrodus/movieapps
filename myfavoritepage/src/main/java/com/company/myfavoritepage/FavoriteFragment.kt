@@ -58,7 +58,7 @@ class FavoriteFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setRecylerView()
         initSwipeRefreshListener()
-        viewModel.getListFavorie()
+        viewModel.initGetListFavorite()
     }
 
     override fun initViewModel() {
@@ -135,7 +135,7 @@ class FavoriteFragment : BaseFragment() {
     @ExperimentalCoroutinesApi
     private fun initSwipeRefreshListener() {
         binding.swipeLayout.setOnRefreshListener {
-            viewModel.getListFavorie()
+            viewModel.initGetListFavorite()
         }
     }
 

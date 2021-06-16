@@ -239,11 +239,11 @@ object MovieRepositoryTest : Spek({
         val listDataDB = arrayListOf(data)
 
         Scenario("get List of Favorite data properly") {
-            var result: Flowable<PagingData<ListMovieDto>>? = null
+            var result: Flowable<List<ListMovieDto>>? = null
             Given("Detail Serial of Falcon and Winter Solder") {
-                Mockito.doReturn(Single.just(listDataDB)).`when`(dbSource).getAllFilmFavorite()
+                Mockito.doReturn(Flowable.just(listDataDB)).`when`(dbSource).getAllFilmFavorite()
                 Mockito.`when`(dbSource.getAllFilmFavorite())
-                    .thenReturn(Single.just(listDataDB))
+                    .thenReturn(Flowable.just(listDataDB))
             }
 
             When("request data") {
@@ -251,7 +251,7 @@ object MovieRepositoryTest : Spek({
             }
 
             Then("It should be not null") {
-                var resultPage: PagingData<ListMovieDto>? = null
+                var resultPage: List<ListMovieDto>? = null
                 result?.subscribe ({
                     resultPage = it
                 }, { error ->
