@@ -22,7 +22,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Build debug APK
-        run: bash ./gradlew :app:packageReleaseUniversalApk --stacktrace
+        run: bash ./gradlew :app:packageDevDebugUniversalApk --stacktrace
       - name: Upload APK
         uses: actions/upload-artifact@v2
         with:
